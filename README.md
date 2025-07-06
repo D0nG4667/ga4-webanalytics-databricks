@@ -9,7 +9,7 @@ This project implements a robust, production-ready data pipeline that extracts w
 ```text
 ┌─────────────────┐    ┌──────────────────┐    ┌─────────────────────┐
 │   Google GA4    │    │    Python ETL    │    │   Azure ADLS Gen2   │
-│   Analytics API │───▶│    Pipeline      │───▶│   Data Lake         │
+│   Analytics API │───▶│    Pipeline      │───▶│   Data Lake        │
 └─────────────────┘    └──────────────────┘    └─────────────────────┘
                               │
                               ▼
@@ -49,6 +49,7 @@ This project implements a robust, production-ready data pipeline that extracts w
 - Python 3.13 or higher
 - VS Code with Jupyter extension
 - Git for version control
+- [uv](https://github.com/uv-mamba/uv) (for fast installs)
 
 ## 🚀 Installation & Setup
 
@@ -63,6 +64,12 @@ cd web-analytics-ga4
 
 ```bash
 pip install google-analytics-data azure-storage-file-datalake pandas python-dotenv
+```
+
+Ensure you have `uv` installed for fast dependency management **(Recommended)**:
+
+```bash
+uv pip install -r pyproject.toml
 ```
 
 ### 3. Configure Environment Variables
@@ -205,7 +212,8 @@ metrics=[
 ### Output Path Configuration
 
 ```python
-ADLS_FILE_PATH = "analytics/ga4/daily/ga4_data_{date}.csv"
+ADLS_FILE_PATH = "ga4/ga4_ingestion_output.csv.csv"
+ADLS_FILE_PATH = "analytics/ga4/daily/ga4_data_{date}.csv" **(Recommended)**
 ```
 
 ## 🛠️ Troubleshooting
@@ -304,9 +312,9 @@ for chunk in pd.read_csv(large_file, chunksize=10000):
 
 ## 📝 Change Log
 
-| Version | Date | Changes |
-|---------|------|---------|
-| 1.0.0 | 2025-07-06 | Initial release with basic GA4 to ADLS pipeline |
+| Version | Date       | Changes |
+|---------|------------|---------|
+| 1.0.0   | 2025-07-06 | Initial release with basic GA4 to ADLS pipeline |
 
 ## 👥 Contributing
 
